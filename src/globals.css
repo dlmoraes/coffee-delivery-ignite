@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.radius-card {
+  border-radius: 6px 36px;
+}
