@@ -5,7 +5,7 @@ import { Logo } from './Logo'
 
 export function Header() {
   return (
-    <header className="flex justify-between pt-8">
+    <header className="sticky top-0 z-10 mb-20 flex items-center justify-between bg-background py-8">
       <NavLink to="/" title="Home">
         <Logo />
       </NavLink>

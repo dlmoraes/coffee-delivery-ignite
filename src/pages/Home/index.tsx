@@ -9,7 +9,7 @@ export function Home() {
 
   return (
     <>
-      <div className="z-10 flex items-center justify-between pt-24">
+      <div className="z-10 flex items-center justify-between">
         <div className="max-w-introText">
           <div className="absolute -z-10 flex flex-1 blur-intro">
             <img className="w-full opacity-15" src={backgroundIntro} alt="" />

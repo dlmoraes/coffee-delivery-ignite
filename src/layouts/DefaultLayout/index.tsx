@@ -3,9 +3,11 @@ import { Header } from '../../components/Header'
 
 export function DefaultLayout() {
   return (
-    <div className="mx-auto max-w-7xl pb-28">
-      <Header />
-      <Outlet />
-    </div>
+    <main className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-14 pb-28">
+        <Header />
+        <Outlet />
+      </div>
+    </main>
   )
 }

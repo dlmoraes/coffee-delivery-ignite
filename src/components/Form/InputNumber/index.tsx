@@ -32,6 +32,7 @@ export function InputNumber() {
   return (
     <div className="flex items-center justify-center gap-x-1 rounded-md bg-baseButton px-2 py-2">
       <button
+        type="button"
         onClick={handleDecrement}
         className="text-purple hover:text-purpleDark "
       >
@@ -46,6 +47,7 @@ export function InputNumber() {
         className="remove-arrow w-6 bg-transparent text-center"
       />
       <button
+        type="button"
         onClick={handleIncrement}
         className="text-purple hover:text-purpleDark"
       >

@@ -6,7 +6,7 @@ import {
   Money,
   Trash,
 } from '@phosphor-icons/react'
-import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { InputNumber } from '../../components/Form/InputNumber'
 import checkoutFake from '../../data/checkoutFake'
 
@@ -19,20 +19,6 @@ export interface ItemCoffeeCheckoutProps {
 
 export function Checkout() {
   const checkoutCoffeeItens = checkoutFake
-
-  const [typePayment, setTypePayment] = useState(
-    null as 'CREDIT' | 'DEBIT' | 'MONEY' | null,
-  )
-
-  function handleSetCreditWithPayment() {
-    setTypePayment('CREDIT')
-  }
-  function handleSetDebitWithPayment() {
-    setTypePayment('DEBIT')
-  }
-  function handleSetMoneyWithPayment() {
-    setTypePayment('MONEY')
-  }
 
   function formatNumber(value: number) {
     return new Intl.NumberFormat('pt-BR', {
@@ -47,9 +33,12 @@ export function Checkout() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-x-8 pt-20">
+    <form
+      id="checkoutForm"
+      className="grid grid-cols-formCheckoutCards gap-x-8"
+    >
       <div className="flex flex-col">
-        <div className="text-titleXS font-display">Complete seu pedido</div>
+        <div className="font-display text-titleXS">Complete seu pedido</div>
         <div className="mt-4 rounded-md bg-baseCard p-10">
           <div className="flex gap-x-3">
             <MapPinLine className="mt-1 h-5 w-5 text-yellowDark" />
@@ -62,54 +51,62 @@ export function Checkout() {
               </span>
             </div>
           </div>
-          <form id="checkoutForm" className="flex flex-col gap-4 pt-8">
+          <div className="flex flex-col gap-4 pt-8">
             <div>
               <input
                 type="text"
                 placeholder="CEP"
-                className="placeholder:text-bodyS rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="90250-440"
               />
             </div>
             <div>
               <input
                 type="text"
                 placeholder="Rua"
-                className="placeholder:text-bodyS w-full rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="w-full rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="Rua João Daniel Martinelli"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-form2 gap-4">
               <input
                 type="text"
                 placeholder="Número"
-                className="placeholder:text-bodyS rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="102"
               />
-              <div className="rounded border border-baseButton bg-baseInput">
+              <div className="flex items-center justify-between gap-2 rounded border border-baseButton bg-baseInput">
                 <input
                   type="text"
                   placeholder="Complemento"
-                  className="placeholder:text-bodyS rounded bg-transparent p-3 focus:outline-yellowDark"
+                  className="flex-1 rounded bg-transparent p-3 placeholder:text-bodyS focus:outline-yellowDark"
                 />
-                <span className="text-xs italic text-baseLabel">Opcional</span>
+                <span className="mr-2 text-xs italic text-baseLabel">
+                  Opcional
+                </span>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-form gap-4">
               <input
                 type="text"
                 placeholder="Bairro"
-                className="placeholder:text-bodyS rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="Farrapos"
               />
               <input
                 type="text"
                 placeholder="Cidade"
-                className="placeholder:text-bodyS rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="Porto Alegre"
               />
               <input
                 type="text"
                 placeholder="UF"
-                className="placeholder:text-bodyS w-14 rounded border border-baseButton bg-baseInput p-3 focus:outline-yellowDark"
+                className="rounded border border-baseButton bg-baseInput p-3 placeholder:text-bodyS focus:outline-yellowDark"
+                value="RS"
               />
             </div>
-          </form>
+          </div>
         </div>
 
         <div className="mt-3 rounded-md bg-baseCard p-10">
@@ -122,88 +119,92 @@ export function Checkout() {
               </span>
             </div>
           </div>
-          <div className="flex gap-4 pt-8">
-            <button
-              type="button"
-              data-selected-type-payment={
-                typePayment === 'CREDIT' ? 'active' : ''
-              }
-              onClick={handleSetCreditWithPayment}
-              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText hover:bg-baseHover data-[selected-type-payment=active]:bg-purpleLight"
+          <div className="grid grid-cols-formCards gap-4 pt-8">
+            <label
+              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText focus-within:bg-purpleLight hover:bg-baseHover group-checked:bg-purpleLight peer-checked:bg-teal-300"
+              htmlFor="cartaoCredito"
             >
-              <CreditCard className="h-4 w-4 text-purple" />
+              <CreditCard className="m-0 h-4 text-purple" />
               <span className="text-buttonM font-normal uppercase">
-                cartão de crédito
+                CARTÃO DE CRÉDITO
               </span>
-            </button>
-            <button
-              type="button"
-              data-selected-type-payment={
-                typePayment === 'DEBIT' ? 'active' : ''
-              }
-              onClick={handleSetDebitWithPayment}
-              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText data-[selected-type-payment=active]:bg-purpleLight"
+              <input
+                type="radio"
+                className="sr-only appearance-none"
+                name="typePayment"
+                id="cartaoCredito"
+              />
+            </label>
+            <label
+              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText focus-within:bg-purpleLight hover:bg-baseHover group-checked:bg-purpleLight"
+              htmlFor="cartaoDebito"
             >
-              <Bank className="h-4 w-4 text-purple" />
+              <Bank className="m-0 h-4 text-purple" />
               <span className="text-buttonM font-normal uppercase">
-                cartão de débito
+                CARTÃO DE DÉBITO
               </span>
-            </button>
-            <button
-              type="button"
-              data-selected-type-payment={
-                typePayment === 'MONEY' ? 'active' : ''
-              }
-              onClick={handleSetMoneyWithPayment}
-              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText data-[selected-type-payment=active]:bg-purpleLight"
+              <input
+                type="radio"
+                className="sr-only appearance-none"
+                name="typePayment"
+                id="cartaoDebito"
+              />
+            </label>
+            <label
+              className="flex items-center gap-4 rounded bg-baseButton p-4 text-baseText focus-within:bg-purpleLight hover:bg-baseHover group-checked:bg-purpleLight"
+              htmlFor="dinheiro"
             >
-              <Money className="h-4 w-4 text-purple" />
+              <Money className="m-0 h-4 text-purple" />
               <span className="text-buttonM font-normal uppercase">
-                dinheiro
+                DINHEIRO
               </span>
-            </button>
+              <input
+                type="radio"
+                className="sr-only appearance-none"
+                name="typePayment"
+                id="dinheiro"
+              />
+            </label>
           </div>
         </div>
       </div>
+
       <div className="flex flex-col">
-        <div className="text-titleXS font-display">Cafés selecionados</div>
+        <div className="font-display text-titleXS">Cafés selecionados</div>
         <div className="radius-card mt-4 bg-baseCard p-10">
-          <div className="flex flex-col">
+          <div className="flex w-full flex-col">
             {checkoutCoffeeItens.map((item) => {
               return (
-                <>
-                  <div
-                    key={item.title}
-                    className="flex items-center justify-between"
-                  >
-                    <div className="flex gap-x-5">
-                      <img src={item.imgSrc} alt="" />
-                      <div className="flex flex-col gap-2">
+                <div key={item.title}>
+                  <div className="flex gap-x-5">
+                    <img src={item.imgSrc} alt="" />
+                    <div className="flex flex-1 flex-col gap-2">
+                      <div className="flex items-center justify-between">
                         <span className="text-bodyM">{item.title}</span>
-                        <div className="flex items-center gap-2">
-                          <InputNumber />
-                          <button
-                            type="button"
-                            className="flex items-center gap-4 rounded bg-baseButton p-2.5 text-baseText hover:bg-baseHover"
-                          >
-                            <Trash className="h-4 w-4 text-purple" />
-                            <span className="text-buttonM font-normal uppercase">
-                              remover
-                            </span>
-                          </button>
+                        <div className="flex items-center gap-1">
+                          R${' '}
+                          <div className="text-bodyM font-semibold">
+                            {amountByItem(item.value, item.qty)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      R${' '}
-                      <div className="text-bodyM font-semibold">
-                        {amountByItem(item.value, item.qty)}
+                      <div className="flex items-center gap-2">
+                        <InputNumber />
+                        <button
+                          type="button"
+                          className="flex items-center gap-4 rounded bg-baseButton p-2.5 text-baseText hover:bg-baseHover"
+                        >
+                          <Trash className="h-4 w-4 text-purple" />
+                          <span className="text-buttonM font-normal uppercase">
+                            remover
+                          </span>
+                        </button>
                       </div>
                     </div>
                   </div>
 
                   <div className="my-6 h-0.5 w-full bg-baseButton"></div>
-                </>
+                </div>
               )
             })}
 
@@ -216,21 +217,23 @@ export function Checkout() {
                 <span className="text-bodyS">Entrega</span>
                 <span className="text-bodyS">R$ 3,50</span>
               </div>
-              <div className="text-bodyL flex items-center justify-between font-bold text-baseSubtitle">
+              <div className="flex items-center justify-between text-bodyL font-bold text-baseSubtitle">
                 <span>Total</span>
                 <span>R$ 33,20</span>
               </div>
             </div>
-            <button
-              type="submit"
-              form="checkoutForm"
-              className="mt-6 w-full rounded bg-yellow py-3 font-semibold uppercase text-white hover:bg-yellowDark"
-            >
-              confirmar pedido
-            </button>
+            <NavLink to="/checkout-success">
+              <button
+                type="submit"
+                form="checkoutForm"
+                className="mt-6 w-full rounded bg-yellow py-3 font-semibold uppercase text-white hover:bg-yellowDark"
+              >
+                confirmar pedido
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   )
 }

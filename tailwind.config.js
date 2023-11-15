@@ -94,6 +94,10 @@ export default {
       },
       gridTemplateColumns: {
         intro: 'minmax(38rem, 1fr) 1fr',
+        form: 'minmax(7.5rem, 10rem) 1fr minmax(3.5rem, 4rem)',
+        form2: 'minmax(7.5rem, 10rem) 1fr',
+        formCheckoutCards: 'minmax(38rem, 40rem) 1fr',
+        formCards: '1fr 1fr 1fr',
       },
       opacity: {
         15: '.15',
