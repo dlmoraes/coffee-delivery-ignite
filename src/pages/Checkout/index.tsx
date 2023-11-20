@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { CheckoutContext } from '../../context/CheckoutContext'
 import { DeliveryInformation } from '../../reducers/checkouts/reducer'
 import { CoffeesSelected } from './components/CoffeesSelected'
+import { EmptyCart } from './components/EmptyCart'
 import { InfoAddress } from './components/InfoAddress'
 import { InfoPayment } from './components/InfoPayment'
 
@@ -45,8 +46,6 @@ export function Checkout() {
     navigate('/checkout-success', { replace: true })
   }
 
-  console.log(cartIsEmpty)
-
   return (
     <form id="checkoutForm" onSubmit={handleSubmit}>
       {!cartIsEmpty ? (
@@ -64,9 +63,7 @@ export function Checkout() {
           <CoffeesSelected />
         </div>
       ) : (
-        <h1 className="font-display text-titleXl font-medium">
-          Sem nada no carrinho
-        </h1>
+        <EmptyCart />
       )}
     </form>
   )
