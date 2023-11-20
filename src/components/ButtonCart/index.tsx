@@ -12,7 +12,7 @@ export function ButtonCart() {
   return (
     <NavLink to={urlTarget} title="Checkout">
       <button className="relative rounded-md bg-yellowLight p-2">
-        {isShow ? (
+        {isShow && qtyItemsToCart > 0 ? (
           <span className="absolute -right-2 -top-3 rounded-full bg-yellowDark px-2 py-0.5 text-sm font-bold text-white">
             {qtyItemsToCart}
           </span>
