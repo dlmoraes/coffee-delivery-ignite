@@ -1,18 +1,26 @@
 import { ShoppingCart } from '@phosphor-icons/react'
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
+import { CheckoutContext } from '../../context/CheckoutContext'
 
-export interface ButtonCartProps {
-  qty?: number
-}
+export function ButtonCart() {
+  const { qtyItemsToCart, status } = useContext(CheckoutContext)
 
-export function ButtonCart({ qty = 0 }: ButtonCartProps) {
+  const isShow = status === 'WAITING'
+  const urlTarget = isShow ? '/checkout' : '/checkout-success'
+
   return (
-    <button className="relative rounded-md bg-yellowLight p-2">
-      {qty > 0 ?? (
-        <span className="absolute -right-2 -top-3 rounded-full bg-yellowDark px-2 py-0.5 text-sm font-bold text-white">
-          {qty}
-        </span>
-      )}
-      <ShoppingCart weight="fill" className="h-6 w-6 text-yellowDark" />
-    </button>
+    <NavLink to={urlTarget} title="Checkout">
+      <button className="relative rounded-md bg-yellowLight p-2">
+        {isShow ? (
+          <span className="absolute -right-2 -top-3 rounded-full bg-yellowDark px-2 py-0.5 text-sm font-bold text-white">
+            {qtyItemsToCart}
+          </span>
+        ) : (
+          <></>
+        )}
+        <ShoppingCart weight="fill" className="h-6 w-6 text-yellowDark" />
+      </button>
+    </NavLink>
   )
 }

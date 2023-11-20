@@ -1,10 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
+import { CheckoutContextProvider } from './context/CheckoutContext'
 
 export function App() {
   return (
     <BrowserRouter>
-      <Router />
+      <CheckoutContextProvider>
+        <Router />
+      </CheckoutContextProvider>
     </BrowserRouter>
   )
 }

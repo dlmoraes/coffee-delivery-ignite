@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .radius-card {
   border-radius: 6px 36px;
 }
@@ -13,4 +14,8 @@
 }
 .remove-arrow {
     -moz-appearance: textfield;
+}
+
+.checkbox-label:has(input:checked) {
+  @apply bg-purpleLight border-purple border;
 }

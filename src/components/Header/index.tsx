@@ -16,9 +16,7 @@ export function Header() {
           Porto Alegre, RS
         </button>
 
-        <NavLink to="/checkout" title="Checkout">
-          <ButtonCart />
-        </NavLink>
+        <ButtonCart />
       </div>
     </header>
   )

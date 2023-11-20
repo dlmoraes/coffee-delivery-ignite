@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import americanoImg from '../assets/coffee/Americano.png'
 import arabeImg from '../assets/coffee/Arabe.png'
 import cafeGeladoImg from '../assets/coffee/Cafe Gelado.png'
@@ -12,10 +13,11 @@ import irlandesImg from '../assets/coffee/Irlandes.png'
 import latteImg from '../assets/coffee/Latte.png'
 import macchiatoImg from '../assets/coffee/Macchiato.png'
 import mochaccinoImg from '../assets/coffee/Mochaccino.png'
-import { ItemCoffeeProps } from '../pages/Home/components/ItemCoffee'
+import { Coffee } from '../pages/Home/components/ItemCoffee'
 
 export default [
   {
+    id: uuidv4(),
     imgSrc: expressoTradImg,
     tags: ['Tradicional'],
     title: 'Expresso Tradicional',
@@ -23,6 +25,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: americanoImg,
     tags: ['Tradicional'],
     title: 'Expresso Americano',
@@ -30,6 +33,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: expressoCremosoImg,
     tags: ['Tradicional'],
     title: 'Expresso Cremoso',
@@ -37,6 +41,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: cafeGeladoImg,
     tags: ['Tradicional', 'Gelado'],
     title: 'Expresso Gelado',
@@ -44,6 +49,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: cafeComLeiteImg,
     tags: ['Tradicional', 'Com leite'],
     title: 'Café com Leite',
@@ -51,6 +57,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: latteImg,
     tags: ['Tradicional', 'Com leite'],
     title: 'Latte',
@@ -59,6 +66,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: capuccinoImg,
     tags: ['Tradicional', 'Com leite'],
     title: 'Capuccino',
@@ -67,6 +75,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: macchiatoImg,
     tags: ['Tradicional', 'Com leite'],
     title: 'Macchiato',
@@ -75,6 +84,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: mochaccinoImg,
     tags: ['Tradicional', 'Com leite'],
     title: 'Mocaccino',
@@ -82,6 +92,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: chocolateQuenteImg,
     tags: ['Especial', 'Com leite'],
     title: 'Chocolate Quente',
@@ -89,6 +100,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: cubanoImg,
     tags: ['Especial', 'Alcoólico', 'Gelado'],
     title: 'Cubano',
@@ -97,6 +109,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: havaianoImg,
     tags: ['Especial'],
     title: 'Havaiano',
@@ -104,6 +117,7 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: arabeImg,
     tags: ['Especial'],
     title: 'Árabe',
@@ -111,10 +125,11 @@ export default [
     value: 9.9,
   },
   {
+    id: uuidv4(),
     imgSrc: irlandesImg,
     tags: ['Especial', 'Alcoólico'],
     title: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     value: 9.9,
   },
-] as ItemCoffeeProps[]
+] as Coffee[]

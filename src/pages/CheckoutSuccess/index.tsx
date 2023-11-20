@@ -1,19 +1,21 @@
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
+import { useContext } from 'react'
 import imgCheckoutSuccess from '../../assets/checkoutsuccess.svg'
-
-export interface CheckoutSuccessProps {}
+import { CheckoutContext } from '../../context/CheckoutContext'
+import { Header } from './components/Header'
 
 export function CheckoutSuccess() {
+  const { deliveryInfo, payment } = useContext(CheckoutContext)
+
+  const address = `${deliveryInfo.street}, ${deliveryInfo.number}`
+  const complementAddress = `${deliveryInfo.district} - ${deliveryInfo.city}, ${deliveryInfo.state}`
+
   return (
     <div className="mt-20 space-y-10">
-      <div className="flex flex-col gap-2">
-        <span className="font-display text-titleL font-extrabold text-yellowDark">
-          Uhu! Pedido confirmado
-        </span>
-        <span className="text-bodyL font-normal text-baseSubtitle">
-          Agora é só aguardar que logo o café chegará até você
-        </span>
-      </div>
+      <Header
+        title="Uhu! Pedido confirmado"
+        subtitle="Agora é só aguardar que logo o café chegará até você"
+      />
       <div className="grid grid-cols-2 gap-28">
         <div className="radius-card">
           <div className="radius-card w-full bg-gradient-to-r from-yellow via-red-500 to-purple p-0.5">
@@ -24,9 +26,9 @@ export function CheckoutSuccess() {
                 </button>
                 <div className="flex flex-col text-bodyM text-baseText">
                   <span>
-                    Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                    Entrega em <strong>{address}</strong>
                   </span>
-                  <span>Farrapos - Porto Alegre, RS</span>
+                  <span> {complementAddress}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
@@ -44,7 +46,7 @@ export function CheckoutSuccess() {
                 </button>
                 <div className="flex flex-col text-bodyM text-baseText">
                   <span>Pagamento na entrega</span>
-                  <strong>Cartão de Crédito</strong>
+                  <strong>{payment}</strong>
                 </div>
               </div>
             </div>

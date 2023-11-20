@@ -1,32 +1,19 @@
 import { Minus, Plus } from '@phosphor-icons/react'
-import { ChangeEvent, useState } from 'react'
 
-export function InputNumber() {
-  const [value, setValue] = useState(0)
+export interface InputNumberProps {
+  onChangeQty: (newQty: number) => void
+  qty: number
+}
 
+export function InputNumber({ onChangeQty, qty }: InputNumberProps) {
   function handleIncrement() {
-    console.log('handleIncrement')
-    setValue((state) => {
-      state += 1
-      return state
-    })
+    onChangeQty(qty + 1)
   }
 
   function handleDecrement() {
-    console.log('handleDecrement')
-    setValue((state) => {
-      state -= 1
-      return state < 0 ? 0 : state
-    })
-  }
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    console.log('onChange')
-    const newValue = Number(event.target.value)
-    setValue((state) => {
-      state = newValue
-      return state
-    })
+    if (qty > 1) {
+      onChangeQty(qty - 1)
+    }
   }
 
   return (
@@ -38,14 +25,7 @@ export function InputNumber() {
       >
         <Minus />
       </button>
-      <input
-        type="number"
-        min={0}
-        max={99}
-        value={value}
-        onChange={handleChange}
-        className="remove-arrow w-6 bg-transparent text-center"
-      />
+      <span className="remove-arrow w-6 bg-transparent text-center">{qty}</span>
       <button
         type="button"
         onClick={handleIncrement}
