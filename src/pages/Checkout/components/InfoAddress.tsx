@@ -1,21 +1,10 @@
 import { MapPinLine } from '@phosphor-icons/react'
-import { ChangeEvent } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { InputText } from '../../../components/Form/InputText'
-import { DeliveryInformation } from '../../../reducers/checkouts/reducer'
 import { HeaderCard } from './HeaderCard'
 
-export interface InfoAddressProps {
-  formInfo: DeliveryInformation
-  onChange: (name: string, value: string) => void
-}
-
-export function InfoAddress({ formInfo, onChange }: InfoAddressProps) {
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const target = event.target
-    const { name, value } = target
-
-    onChange(name, value)
-  }
+export function InfoAddress() {
+  const { register } = useFormContext()
 
   return (
     <div className="mt-4 rounded-md bg-baseCard p-10">
@@ -26,70 +15,65 @@ export function InfoAddress({ formInfo, onChange }: InfoAddressProps) {
       />
       <div className="flex flex-col gap-4 pt-8">
         <InputText.Root>
-          <InputText.Group>
-            <InputText.MaskControl
-              mask="99999-999"
-              placeholder="CEP"
-              name="cep"
-              value={formInfo.cep}
-              onChange={handleInputChange}
-            />
-          </InputText.Group>
+          <InputText.Control
+            id="cep"
+            placeholder="CEP"
+            maxLength={9}
+            pattern="/d"
+            {...register('cep', { valueAsNumber: true })}
+          />
         </InputText.Root>
         <InputText.Root>
           <InputText.Control
+            id="street"
             placeholder="Rua"
-            name="street"
             className="w-full"
-            value={formInfo.street}
-            onChange={handleInputChange}
+            {...register('street')}
           />
         </InputText.Root>
-        <div className="grid grid-cols-form2 gap-4">
+        <div className="flex">
           <InputText.Root>
             <InputText.Control
+              id="number"
+              className="w-10/12"
               placeholder="Número"
-              name="number"
-              value={formInfo.number}
-              onChange={handleInputChange}
+              {...register('number')}
             />
           </InputText.Root>
-          <InputText.Root>
+          <InputText.Root className="-ml-5 flex-1">
             <InputText.Suffix textSuffix="Opcional">
               <InputText.Control
-                hasSuffix
-                className="flex-1"
+                id="complement"
+                className="w-full"
                 placeholder="Complemento"
-                name="complement"
-                value={formInfo.complement}
-                onChange={handleInputChange}
+                {...register('complement')}
               />
             </InputText.Suffix>
           </InputText.Root>
         </div>
-        <div className="grid grid-cols-form gap-4">
-          <InputText.Root>
+        <div className="flex gap-4">
+          <InputText.Root className="w-2/3">
             <InputText.Control
+              id="district"
+              className=" w-full"
               placeholder="Bairro"
-              name="district"
-              value={formInfo.district}
-              onChange={handleInputChange}
+              {...register('district')}
             />
           </InputText.Root>
-          <InputText.Root>
+          <InputText.Root className="w-full">
             <InputText.Control
+              id="city"
               placeholder="Cidade"
-              name="city"
-              value={formInfo.city}
-              onChange={handleInputChange}
+              className="w-full"
+              {...register('city')}
             />
           </InputText.Root>
           <InputText.Root>
             <InputText.Control
+              id="state"
               placeholder="UF"
-              name="state"
-              value={formInfo.state}
-              onChange={handleInputChange}
+              className="w-full"
+              {...register('state')}
             />
           </InputText.Root>
         </div>

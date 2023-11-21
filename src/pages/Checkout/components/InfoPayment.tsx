@@ -1,17 +1,13 @@
 import { CurrencyDollar } from '@phosphor-icons/react'
+import { useFormContext } from 'react-hook-form'
 import { typesPayment } from '../../../constants'
 import { HeaderCard } from './HeaderCard'
 import { InputPayment } from './InputPayment'
 
-export interface InfoPaymentProps {
-  valueSelected: string
-  onChange: (value: string) => void
-}
+export function InfoPayment() {
+  const { register, formState } = useFormContext()
 
-export function InfoPayment({ valueSelected, onChange }: InfoPaymentProps) {
-  function handleInputChange(value: string) {
-    onChange(value)
-  }
+  const errorMsg = formState.errors.payment?.message?.toString()
 
   return (
     <div className="mt-3 rounded-md bg-baseCard p-10">
@@ -24,15 +20,17 @@ export function InfoPayment({ valueSelected, onChange }: InfoPaymentProps) {
       <div className="grid grid-cols-formCards gap-4 pt-8">
         {typesPayment.map((item) => {
           return (
-            <InputPayment
+            <InputPayment.Control
               key={item.labelText}
               labelText={item.labelText}
               icon={item.icon}
-              onChange={handleInputChange}
-              valueSelected={valueSelected}
+              {...register('payment')}
             />
           )
         })}
+      </div>
+      <div className="-mb-2 mt-4">
+        <span className="text-bodyS font-medium text-red-800">{errorMsg}</span>
       </div>
     </div>
   )

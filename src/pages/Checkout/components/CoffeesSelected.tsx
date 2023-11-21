@@ -41,14 +41,8 @@ export function CoffeesSelected() {
               <span>{formatMoney(amountTotal)}</span>
             </div>
           </div>
-          {/* <NavLink to="/checkout-success">
-            <button className="mt-6 w-full rounded bg-yellow py-3 font-semibold uppercase text-white hover:bg-yellowDark">
-              confirmar pedido
-            </button>
-          </NavLink> */}
           <button
             type="submit"
-            form="checkoutForm"
             className="mt-6 w-full rounded bg-yellow py-3 font-semibold uppercase text-white hover:bg-yellowDark"
           >
             confirmar pedido
