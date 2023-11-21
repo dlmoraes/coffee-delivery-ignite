@@ -27,7 +27,8 @@ export function InfoAddress({ formInfo, onChange }: InfoAddressProps) {
       <div className="flex flex-col gap-4 pt-8">
         <InputText.Root>
           <InputText.Group>
-            <InputText.Control
+            <InputText.MaskControl
+              mask="99999-999"
               placeholder="CEP"
               name="cep"
               value={formInfo.cep}
@@ -46,7 +47,12 @@ export function InfoAddress({ formInfo, onChange }: InfoAddressProps) {
         </InputText.Root>
         <div className="grid grid-cols-form2 gap-4">
           <InputText.Root>
-            <InputText.Control placeholder="Número" name="number" />
+            <InputText.Control
+              placeholder="Número"
+              name="number"
+              value={formInfo.number}
+              onChange={handleInputChange}
+            />
           </InputText.Root>
           <InputText.Root>
             <InputText.Suffix textSuffix="Opcional">
